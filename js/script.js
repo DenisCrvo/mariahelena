@@ -5,7 +5,7 @@ const EVENT_CONFIG = Object.freeze({
   timeZone: "America/Recife",
   officialTime: null,
   maxAttendees: 8,
-  appsScriptUrl: ""
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycby8CuMbx0jDzvVFFabvQbMRlKeMM-p6be3fK3NY3WWZnsacXJ58ZY-74vlz5KqI_Zs/exec"
 });
 
 const form = document.querySelector("#rsvp-form");
@@ -194,7 +194,7 @@ form.addEventListener("submit", (event) => {
   }
 
   function onResponse(messageEvent) {
-    if (messageEvent.source !== responseFrame.contentWindow || settled) return;
+    if (settled || !/^https:\/\/([a-z0-9-]+\.)*(google|googleusercontent)\.com$/.test(messageEvent.origin)) return;
     const result = messageEvent.data;
     if (!result || result.type !== "maria-helena-rsvp" || result.nonce !== nonce) return;
     settled = true;

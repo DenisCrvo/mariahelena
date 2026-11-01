@@ -1,4 +1,4 @@
-const SHEET_ID = "COLE_AQUI_O_ID_DA_PLANILHA";
+const SHEET_ID = "1MUo-RxEHiK2MWoCYNEYwCKtyh-GZ49Sbfiq_2_Tc64o";
 const SHEET_NAME = "Confirmacoes";
 const MAX_ATTENDEES = 8;
 
@@ -53,7 +53,7 @@ function response_(nonce, ok, message) {
     ok: ok,
     message: message
   }).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
-  const html = '<!doctype html><html><head><meta charset="utf-8"></head><body><script>parent.postMessage(' +
+  const html = '<!doctype html><html><head><meta charset="utf-8"></head><body><script>top.postMessage(' +
     payload +
     ', "*");</script></body></html>';
   return HtmlService.createHtmlOutput(html)
